@@ -3,30 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "http": "^0.0.0",
-    "http-proxy": "^1.17.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-markdown": "^3.3.0",
-    "react-redux": "^5.0.7",
-    "react-scripts": "1.1.4",
-    "redux": "^4.0.0",
+    "antd": "^2.13.9",
+    "es6-promise": "^4.1.1",
+    "http": "0.0.0",
+    "http-proxy": "^1.16.2",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.19.2",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-markdown": "^2.5.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reqwest": "^2.0.5"
+    "tws-antd": "^1.7.4"
+  },
+  "proxy": {
+    "/web": {
+      "target": "http://localhost:8081",
+      "changeOrign": true
+    }
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "antd": "^3.4.3",
-    "babel-plugin-import": "^1.7.0",
-    "http-proxy-middleware": "^0.18.0",
-    "react-app-rewired": "^1.5.2",
-    "react-hot-loader": "^4.0.0",
-    "react-router-dom": "^4.2.2"
   }
 }

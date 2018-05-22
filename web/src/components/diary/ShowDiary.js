@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Row, Col } from 'antd';
+import moment from 'moment';
+const dateFormat = 'YYYY-MM-DD';
 
 class ShowDiary extends Component {
     render() {
@@ -9,20 +11,19 @@ class ShowDiary extends Component {
 
                 <div key={index} style={{ marginTop: 20 }}>
                     {
-
-                        <Card title={item.time} style={{ margin: "10px" }}>
+                        <Card title={moment(item.time).format(dateFormat) + "的成长日志"} style={{ margin: "10px" }}>
                             <div>
                                 <Row >
-                                    <Col offset={18}>
+                                    <Col >
                                         <span>
-                                        {item.content}                                            
+                                            {item.content}
                                         </span>
                                     </Col>
                                 </Row>
                             </div>
                         </Card>
 
-                        
+
                     }
                 </div>)
         });

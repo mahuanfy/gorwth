@@ -17,12 +17,15 @@ class Diary extends Component {
         }
 
     }
+
+    componentDidMount(){
+        this.props.getAllDiaries()
+    }
     submitDiary(newDiary) {
         this.props.addDiary({ ...newDiary, userId: 1 });
     }
     render() {
         const diaries = this.props.diaries;
-        console.log(diaries)
         return (
             <div>
                 <AddDiary
@@ -39,7 +42,6 @@ class Diary extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         diaries: state.Diary
     }
@@ -51,7 +53,6 @@ const mapDispatchToProps = (dispatch) => {
         }
         ,
         getAllDiaries: () => {
-            console.log("11111111111111")
             dispatch(diaryActions.getAllDiary());
         }
     };

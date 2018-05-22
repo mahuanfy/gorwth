@@ -9,9 +9,11 @@ export const allDiary = (content) => {
 };
 
 export const getAllDiary = () => {
+    console.log(12341)
     return dispatch => {
-        request.get(`http://localhost:8081/diary`)
+        request.get("/web/diary")
             .then(result => {
+                console.log(result.data)
                 if (result.status === StatusCode.OK) {
                     
                     dispatch(allDiary(result.data));
@@ -21,7 +23,7 @@ export const getAllDiary = () => {
 };
 export const addDiary = (diary) => {
     return dispatch => {
-        request.post("http://localhost:8081/diary", diary)
+        request.post("/web/diary", diary)
             .then(result => {
                 if (result.status === StatusCode.CREATED) {
                     dispatch(getAllDiary(diary.userId));
