@@ -50,8 +50,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addDiary: (diary) => {
             dispatch(diaryActions.addDiary(diary));
-        }
-        ,
+        },
         getAllDiaries: () => {
             dispatch(diaryActions.getAllDiary());
         }

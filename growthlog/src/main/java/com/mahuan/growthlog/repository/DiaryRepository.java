@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface DiaryRepository extends JpaRepository<Diary,Long> {
 
-    List<Diary> findByUserId(Long userId);
+
+    List<Diary> findByUserIdOrderByTimeDesc(Long userId);
 }

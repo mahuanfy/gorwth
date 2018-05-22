@@ -13,7 +13,7 @@ import java.util.List;
 
 @Api("成长日志部分")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/web")
 public class DiaryController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class DiaryController {
     @ApiOperation(value = "通过用户Id查询用户日志信息")
     @GetMapping(value = "/diary/{userId}")
     public ResponseEntity<?> queryDiaryById(@PathVariable("userId") Long userId) {
-        List<Diary> diaries = this.diaryRepository.findByUserId(userId);
+        List<Diary> diaries = this.diaryRepository.findByUserIdOrderByTimeDesc(userId);
         return new ResponseEntity<>(diaries, HttpStatus.OK);
     }
 

@@ -9,7 +9,7 @@ class AddDiary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: '',
+            time: this.props.time,
             content: '',
             userId:1
         }
