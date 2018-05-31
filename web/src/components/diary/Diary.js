@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import AddDiary from './AddDiary';
 import ShowDiary from './ShowDiary';
-import * as diaryActions from '../../action/diary';
+import * as diaryActions from '../../action/diary.action';
 
 const dateFormat = 'YYYY/MM/DD';
 

@@ -1,57 +1,86 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as diaryActions from '../../action/diary';
-
+import * as loginActions from '../../action/login.action';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
+const FormItem = Form.Item;
 const dateFormat = 'YYYY/MM/DD';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: moment(new Date(), dateFormat),
-            title: "新增日志",
-            content: "请输入日志内容"
+            username: "",
+            password: ""
         }
 
     }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+    }
 
-    componentDidMount(){
-        this.props.getAllDiaries()
-    }
-    submitDiary(newDiary) {
-        this.props.addDiary({ ...newDiary, userId: 1 });
-    }
     render() {
-        const diaries = this.props.diaries;
+        const { getFieldDecorator } = this.props.form;
         return (
             <div>
-                <AddDiary
-                    time={this.state.time}
-                    title={this.state.title}
-                    content={this.state.content}
-                    submitDiary={this.submitDiary.bind(this)}
-                />
-                <ShowDiary
-                    diaries={diaries}
-                />
+                <Form onSubmit={this.handleSubmit} className="login-form">
+                    <FormItem>
+                        {getFieldDecorator('userName', {
+                            rules: [{ required: true, message: 'Please input your username!' }],
+                        })(
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                        )}
+                    </FormItem>
+                    <FormItem>
+                        {getFieldDecorator('password', {
+                            rules: [{ required: true, message: 'Please input your Password!' }],
+                        })(
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                        )}
+                    </FormItem>
+                    <FormItem>
+                        {getFieldDecorator('remember', {
+                            valuePropName: 'checked',
+                            initialValue: true,
+                        })(
+                            <Checkbox>Remember me</Checkbox>
+                        )}
+                        <a className="login-form-forgot" href="">Forgot password</a>
+                        <Button type="primary" htmlType="submit" className="login-form-button">
+                            Log in
+                        </Button>
+                        Or <a href="">register now!</a>
+                    </FormItem>
+                </Form>
             </div>
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-        diaries: state.Diary
+        diaries: state.Login
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        login: (user) => {
+            dispatch(loginActions.userLogin(user));
+        },
         // addDiary: (diary) => {
         //     dispatch(diaryActions.addDiary(diary));
         // },
         // getAllDiaries: () => {
         //     dispatch(diaryActions.getAllDiary());
         // }
+        // userLogin:()=>{
+
+        // }
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Diary);
+// const WrappedNormalLoginForm = Form.create()(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

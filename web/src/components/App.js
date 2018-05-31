@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, message ,Icon } from 'antd';
 import '../css/App.css';
+import Personal from './Personal'
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
+
+
+
 
 
 class App extends Component {
@@ -20,6 +24,7 @@ class App extends Component {
     this.setState({ pathName })
   }
   render() {
+
     return (
       <Layout>
         <Header className="header">
@@ -33,6 +38,12 @@ class App extends Component {
             <Menu.Item key="1">成长日志</Menu.Item>
 
           </Menu>
+          <Personal 
+          isLogin = {0}
+          name = {'mahuanhuan'}
+          />
+          
+
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
@@ -40,6 +51,7 @@ class App extends Component {
             <Breadcrumb.Item>成长日志</Breadcrumb.Item>
             <Breadcrumb.Item>{this.state.pathName}</Breadcrumb.Item>
           </Breadcrumb>
+
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
             <Sider width={200} style={{ background: '#fff' }}>
               <Menu
@@ -48,7 +60,6 @@ class App extends Component {
                 defaultOpenKeys={['sub1']}
                 style={{ height: '100%' }}
               >
-
                 <Menu.Item key="1">
                   <Link to={'/'} onClick={this.path.bind(this, "我的日志")}><Icon type="user-add" />我的日志</Link>
                 </Menu.Item>
