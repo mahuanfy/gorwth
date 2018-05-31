@@ -20,6 +20,11 @@ class ShowDiary extends Component {
                                         </span>
                                     </Col>
                                 </Row>
+
+
+
+
+                                
                             </div>
                         </Card>
 
