@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, message ,Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, message, Icon } from 'antd';
+import { Route} from 'react-router-dom';
+
 import '../css/App.css';
 import Personal from './Personal'
+import Diary from './diary/Diary'
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -38,11 +41,11 @@ class App extends Component {
             <Menu.Item key="1">成长日志</Menu.Item>
 
           </Menu>
-          <Personal 
-          isLogin = {0}
-          name = {'mahuanhuan'}
+          <Personal
+            isLogin={0}
+            name={'mahuanhuan'}
           />
-          
+
 
         </Header>
         <Content style={{ padding: '0 50px' }}>
@@ -61,10 +64,10 @@ class App extends Component {
                 style={{ height: '100%' }}
               >
                 <Menu.Item key="1">
-                  <Link to={'/'} onClick={this.path.bind(this, "我的日志")}><Icon type="user-add" />我的日志</Link>
+                  <Link to={'/app/'} onClick={this.path.bind(this, "我的日志")}><Icon type="user-add" />我的日志</Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <Link to={'/show'} onClick={this.path.bind(this, "我的关注")}><Icon type="solution" />我的关注</Link>
+                  <Link to={'/app/app'} onClick={this.path.bind(this, "我的关注")}><Icon type="solution" />我的关注</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
                   <div onClick={this.path.bind(this, "优秀日志")}><Icon type="like-o" />优秀日志</div>
@@ -75,7 +78,8 @@ class App extends Component {
               </Menu>
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>
-              {this.props.children}
+              <Route exact path="/app/" component={Diary} />
+              <Route exact path="/app/app" component={Diary} />
             </Content>
           </Layout>
         </Content>
