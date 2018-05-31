@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api("成长日志部分")
 @RestController
 @RequestMapping("/web")
+@Api("成长日志部分")
 public class DiaryController {
 
     @Autowired
@@ -44,3 +44,4 @@ public class DiaryController {
         return new ResponseEntity<>(id, HttpStatus.NO_CONTENT);
     }
 }
+

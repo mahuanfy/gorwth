@@ -38,4 +38,24 @@ public class UserController {
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @ApiOperation(value = "User login")
+    @PostMapping(value = "/user")
+    public ResponseEntity<?> login(@RequestBody User user) {
+
+        User user1 = userRepository.findByNameAndPassword(user.getName(), user.getPassword());
+        if (user1 != null) {
+            return new ResponseEntity<>(user1, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(user1, HttpStatus.NO_CONTENT);
+
+    }
+
+    @ApiOperation(value = "User Register")
+    @PutMapping(value = "/user")
+    public ResponseEntity<?> register(@RequestBody User user) {
+        userRepository.save(user);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
+    }
 }
