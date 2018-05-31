@@ -24,6 +24,12 @@ class ShowDiary extends Component {
                         </Card>
 
 
+
+
+
+
+
+
                     }
                 </div>)
         });
