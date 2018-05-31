@@ -12,9 +12,8 @@ export const getAllDiary = () => {
     return dispatch => {
         request.get("/web/diary")
             .then(result => {
-                console.log(result.data)
                 if (result.status === StatusCode.OK) {
-                    
+                    console.log(result.data)
                     dispatch(allDiary(result.data));
                 }
             })

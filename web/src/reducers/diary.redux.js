@@ -1,7 +1,8 @@
-export default (state = [], action) => {
+export default (state = {diary:[]}, action) => {
     switch (action.type) {
         case 'GET_ALL_DIARY':
-            return action.content;
+            return {diary:action.content};
+        default:
+            return state
     }
-    return state;
 }

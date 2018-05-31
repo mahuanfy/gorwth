@@ -25,6 +25,9 @@ class Diary extends Component {
         this.props.addDiary({ ...newDiary, userId: 1 });
     }
     render() {
+        if(!this.props.isLogin){
+            // this.props.history.push("/login");
+        }
         const diaries = this.props.diaries;
         return (
             <div>
@@ -43,7 +46,8 @@ class Diary extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        diaries: state.Diary
+        diaries: state.Diary.diary,
+        isLogin:state.Login.isLogin
     }
 }
 const mapDispatchToProps = (dispatch) => {
