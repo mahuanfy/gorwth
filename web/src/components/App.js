@@ -26,11 +26,10 @@ class App extends Component {
   path(pathName) {
     this.setState({ pathName })
   }
-  componentWillMount() {
-    this.props.user()
-  }
+  
   render() {
-    console.log(this.props.isLogin)
+    console.log("this.props.user.name" )
+    console.log(this.props.user )
     if (!this.props.isLogin) {
       this.props.history.push("/");
     }
@@ -49,8 +48,8 @@ class App extends Component {
 
           </Menu>
           <Personal
-            isLogin={0}
-            name={'mahuanhuan'}
+            isLogin={this.props.isLogin}
+            name={this.props.user.name}
           />
 
 
@@ -99,14 +98,9 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    isLogin: state.Login.isLogin
+    isLogin: state.Login.isLogin,
+    user: state.Login.user
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    user: () => {
-      dispatch(action.login());
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps)(App);

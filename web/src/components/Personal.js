@@ -8,7 +8,7 @@ import { Router } from 'react-router'
 const userLoginMenu = (
     <Menu onClick={handleMenuClick}>
         <Menu.Item key="1" >
-        <Link to="/login">登录</Link>
+            <Link to="/">登录</Link>
         </Menu.Item>
         <Menu.Item key="2">注册</Menu.Item>
     </Menu>
@@ -34,9 +34,9 @@ class Personal extends Component {
         return (
             <Row>
                 <Col span={6} offset={19}>
-                    <Dropdown overlay={isLogin == 0?userLoginMenu:userInfoMenu}>
+                    <Dropdown overlay={isLogin ? userInfoMenu : userLoginMenu}>
                         <Button style={{ marginLeft: 8 }}>
-                            {isLogin == 0 ? '请先登录' : this.props.name} <Icon type="down" />
+                            {isLogin ?  "欢迎："+this.props.name:'请先登录'} <Icon type="down" />
                         </Button>
                     </Dropdown>
                 </Col>

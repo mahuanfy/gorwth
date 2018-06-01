@@ -13,30 +13,24 @@ export const logout = (content) => {
         content
     }
 }
-
-export const getUserInfo = (user) => {
-    return dispatch => {
-        dispatch(login(user))
-    }
-}
 export const userLogin = (user) => {
     return dispatch => {
         request.post("/web/user", user)
             .then(result => {
                 if (result.status === StatusCode.OK) {
                     console.log("login success")
-                    dispatch(getUserInfo(result.data));
+                    dispatch(login(result.data));
                 }
             })
     }
 };
 export const register = (user) => {
     return dispatch => {
-        request.post("/web/user", user)
+        request.put("/web/user", user)
             .then(result => {
                 if (result.status === StatusCode.OK) {
 
-                    dispatch(getUserInfo(result.data));
+                    dispatch(login(result.data));
                 }
             })
     }

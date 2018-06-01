@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as loginActions from '../../action/login.action';
-import { Form, Icon, Input, Button, Checkbox ,Card,Row,Col} from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Card, Row, Col } from 'antd';
 import { logout } from '../../action/login.action'
 import '../../css/App.css';
 const FormItem = Form.Item;
@@ -16,11 +16,13 @@ class Login extends Component {
         }
 
     }
+    componentDidMount() {
+        console.log("登陆状态", this.props.isLogin);
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 this.props.login(values)
             }
         });
@@ -28,7 +30,7 @@ class Login extends Component {
 
     render() {
         if (this.props.isLogin) {
-            this.props.history.push("/");
+            this.props.history.push("/app");
         }
         const { getFieldDecorator } = this.props.form;
         return (
@@ -54,8 +56,8 @@ class Login extends Component {
                                     )}
                                 </FormItem>
                                 <FormItem>
-                                    
-                                    <Button type="primary" htmlType="submit" style={{width:"100%"}} className="login-form-button">
+
+                                    <Button type="primary" htmlType="submit" style={{ width: "100%" }} className="login-form-button">
                                         Log in
                         </Button>
                                     Or <a href="">register now!</a>
@@ -72,8 +74,7 @@ class Login extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        diaries: state.Login,
-        logout: logout
+        isLogin: state.Login.isLogin
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -81,15 +82,6 @@ const mapDispatchToProps = (dispatch) => {
         login: (user) => {
             dispatch(loginActions.userLogin(user));
         }
-        // addDiary: (diary) => {
-        //     dispatch(diaryActions.addDiary(diary));
-        // },
-        // getAllDiaries: () => {
-        //     dispatch(diaryActions.getAllDiary());
-        // }
-        // userLogin:()=>{
-
-        // }
     };
 }
 const LoginForm = Form.create()(Login);
