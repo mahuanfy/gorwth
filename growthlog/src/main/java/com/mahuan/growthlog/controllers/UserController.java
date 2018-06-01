@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Api(value = "用户信息操作")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/web")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
