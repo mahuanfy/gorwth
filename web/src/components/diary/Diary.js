@@ -25,9 +25,7 @@ class Diary extends Component {
         this.props.addDiary({ ...newDiary, userId: 1 });
     }
     render() {
-        if(!this.props.isLogin){
-            // this.props.history.push("/login");
-        }
+        
         const diaries = this.props.diaries;
         return (
             <div>

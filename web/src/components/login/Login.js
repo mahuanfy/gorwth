@@ -21,6 +21,7 @@ class Login extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                this.props.login(values)
             }
         });
     }
@@ -39,7 +40,7 @@ class Login extends Component {
                         <div>
                             <Form onSubmit={this.handleSubmit} className="login-form">
                                 <FormItem>
-                                    {getFieldDecorator('userName', {
+                                    {getFieldDecorator('name', {
                                         rules: [{ required: true, message: 'Please input your username!' }],
                                     })(
                                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
@@ -53,12 +54,7 @@ class Login extends Component {
                                     )}
                                 </FormItem>
                                 <FormItem>
-                                    {getFieldDecorator('remember', {
-                                        valuePropName: 'checked',
-                                        initialValue: true,
-                                    })(
-                                        <Checkbox>Remember me</Checkbox>
-                                    )}
+                                    
                                     <Button type="primary" htmlType="submit" style={{width:"100%"}} className="login-form-button">
                                         Log in
                         </Button>
@@ -82,9 +78,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        // login: (user) => {
-        //     dispatch(loginActions.userLogin(user));
-        // },
+        login: (user) => {
+            dispatch(loginActions.userLogin(user));
+        }
         // addDiary: (diary) => {
         //     dispatch(diaryActions.addDiary(diary));
         // },

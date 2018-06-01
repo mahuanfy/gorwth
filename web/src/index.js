@@ -24,7 +24,7 @@ ReactDOM.render(
                     <Route exact path="/" component={Login} />
                     <Route  path="/app" component={App} />
                     {/* <Route path="/show" component={ShowDiary} /> */}
-                    {/* <Redirect to="/" /> */}
+                    <Redirect to="/" />
                     {/* <Route path="/:location" component={test} /> */}
                 </Switch>
         </Router>

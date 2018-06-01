@@ -21,7 +21,7 @@ export const getUserInfo = (user) => {
 }
 export const userLogin = (user) => {
     return dispatch => {
-        request.get("/web/user", user)
+        request.post("/web/user", user)
             .then(result => {
                 if (result.status === StatusCode.OK) {
                     console.log("login success")

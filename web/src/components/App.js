@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, message, Icon } from 'antd';
-import { Route} from 'react-router-dom';
-
+import { Route } from 'react-router-dom';
+import * as action from '../action/login.action';
 import '../css/App.css';
 import Personal from './Personal'
 import Diary from './diary/Diary'
@@ -26,8 +26,15 @@ class App extends Component {
   path(pathName) {
     this.setState({ pathName })
   }
+  componentWillMount() {
+    this.props.user()
+  }
   render() {
-
+    console.log(this.props.isLogin)
+    if (!this.props.isLogin) {
+      this.props.history.push("/");
+    }
+    const match = this.props.match
     return (
       <Layout>
         <Header className="header">
@@ -64,10 +71,10 @@ class App extends Component {
                 style={{ height: '100%' }}
               >
                 <Menu.Item key="1">
-                  <Link to={'/app/'} onClick={this.path.bind(this, "我的日志")}><Icon type="user-add" />我的日志</Link>
+                  <Link to={`${match.url}/`} onClick={this.path.bind(this, "我的日志")}><Icon type="user-add" />我的日志</Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <Link to={'/app/app'} onClick={this.path.bind(this, "我的关注")}><Icon type="solution" />我的关注</Link>
+                  <Link to={`${match.url}/app`} onClick={this.path.bind(this, "我的关注")}><Icon type="solution" />我的关注</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
                   <div onClick={this.path.bind(this, "优秀日志")}><Icon type="like-o" />优秀日志</div>
@@ -78,8 +85,8 @@ class App extends Component {
               </Menu>
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>
-              <Route exact path="/app/" component={Diary} />
-              <Route exact path="/app/app" component={Diary} />
+              <Route exact path={`${match.url}/`} component={Diary} />
+              <Route exact path={`${match.url}/app`} component={Diary} />
             </Content>
           </Layout>
         </Content>
@@ -90,5 +97,16 @@ class App extends Component {
     );
   }
 }
-
-export default withRouter(App);
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.Login.isLogin
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    user: () => {
+      dispatch(action.login());
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
