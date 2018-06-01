@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Dropdown, Button, message, Icon, Menu } from 'antd';
-import { Router } from 'react-router'
+import {  Row, Col, Dropdown, Button, message, Icon, Menu } from 'antd';
 
 
 const userLoginMenu = (
@@ -20,10 +18,10 @@ const userInfoMenu = (
     </Menu>
 );
 
-function handleButtonClick(e) {
-    message.info('<Icon type="loading" />');
-    console.log('click left button', e);
-}
+// function handleButtonClick(e) {
+//     message.info('<Icon type="loading" />');
+//     console.log('click left button', e);
+// }
 
 function handleMenuClick(e) {
     message.info(<Icon type="loading" >正在跳转，请稍等...</Icon>);

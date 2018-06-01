@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Card, Row, Col } from 'antd';
 import moment from 'moment';
 const dateFormat = 'YYYY-MM-DD';

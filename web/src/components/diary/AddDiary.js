@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Card, Input, DatePicker, Row, Col, Button } from 'antd';
 
 const { TextArea } = Input;

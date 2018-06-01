@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as loginActions from '../../action/login.action';
-import { Form, Icon, Input, Button, Checkbox, Card, Row, Col } from 'antd';
-import { logout } from '../../action/login.action'
+import { Form, Icon, Input, Button, Card, Row, Col } from 'antd';
 import '../../css/App.css';
 const FormItem = Form.Item;
-const dateFormat = 'YYYY/MM/DD';
 
 class Login extends Component {
     constructor(props) {

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, message, Icon } from 'antd';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Route } from 'react-router-dom';
-import * as action from '../action/login.action';
 import '../css/App.css';
 import Personal from './Personal'
 import Diary from './diary/Diary'
 
-const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 
