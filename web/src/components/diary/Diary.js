@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
+import {withCookies} from 'react-cookie';
 import AddDiary from './AddDiary';
 import ShowDiary from './ShowDiary';
 import * as diaryActions from '../../action/diary.action';
@@ -13,8 +14,15 @@ class Diary extends Component {
         this.state = {
             time: moment(new Date(), dateFormat),
             title: "新增日志",
-            content: "请输入日志内容"
+            content: "请输入日志内容",
+            user: []
         }
+    }
+
+    componentWillMount() {
+        const {cookies} = this.props;
+        const user = cookies.get('user');
+        this.setState({user});
     }
 
     componentDidMount() {
@@ -31,13 +39,14 @@ class Diary extends Component {
 
     render() {
         const diaries = this.props.diaries;
-        const userId = this.props.user.id;
+        const {user, time, title, content} = this.state;
+        const userId = user.id;
         return (
             <div>
                 <AddDiary
-                    time={this.state.time}
-                    title={this.state.title}
-                    content={this.state.content}
+                    time={time}
+                    title={title}
+                    content={content}
                     userId={userId}
                     submitDiary={this.submitDiary.bind(this)}
                 />
@@ -72,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Diary);
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(Diary));

@@ -1,6 +1,7 @@
 import * as request from '../request/request';
 import * as StatusCode from '../constants/StatusCode';
 
+
 export const login = (content) => {
     return {
         type: "USER_INFO",
@@ -18,7 +19,7 @@ export const userLogin = (user) => {
         request.post("/web/user", user)
             .then(result => {
                 if (result.status === StatusCode.OK) {
-                    console.log("login success")
+                    console.log("login success");
                     dispatch(login(result.data));
                 }
             })

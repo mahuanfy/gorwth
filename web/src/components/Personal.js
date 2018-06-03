@@ -24,11 +24,14 @@ const userInfoMenu = (
 // }
 
 function handleMenuClick(e) {
-    message.info(<Icon type="loading" >正在跳转，请稍等...</Icon>);
+        const hide = message.loading('Action in progress..', 0);
+        // Dismiss manually and asynchronously
+        setTimeout(hide, 2500);
+    // message.info(<Icon type="loading" >正在跳转，请稍等...</Icon>);
 }
 class Personal extends Component {
     render() {
-        const isLogin = this.props.isLogin
+        const isLogin = this.props.isLogin;
         return (
             <Row>
                 <Col span={6} offset={19}>

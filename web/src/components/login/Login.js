@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withCookies} from 'react-cookie';
 import * as loginActions from '../../action/login.action';
 import {Form, Icon, Input, Button, Card, Row, Col} from 'antd';
 import '../../css/App.css';
+
 
 const FormItem = Form.Item;
 
@@ -31,6 +33,10 @@ class Login extends Component {
 
     render() {
         if (this.props.isLogin) {
+            const {cookies} = this.props;
+            cookies.set('user', this.props.user, {path: '/', maxAge: 2 * 60 * 60});
+            cookies.set('isLogin', this.props.isLogin, {path: '/', maxAge: 2 * 60 * 60});
+            console.log(cookies.get('user'));
             this.props.history.push("/app");
         }
         const {getFieldDecorator} = this.props.form;
@@ -79,7 +85,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLogin: state.Login.isLogin
+        isLogin: state.Login.isLogin,
+        user: state.Login.user
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -89,5 +96,6 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 };
-const LoginForm = Form.create()(Login);
+
+const LoginForm = Form.create()(withCookies(Login));
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
