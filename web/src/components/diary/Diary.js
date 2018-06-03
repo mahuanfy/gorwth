@@ -25,6 +25,10 @@ class Diary extends Component {
         this.props.addDiary({...newDiary, userId: userId});
     }
 
+    deleteDiary(diaryId, userId) {
+        this.props.deleteDiary(diaryId, userId);
+    }
+
     render() {
         const diaries = this.props.diaries;
         const userId = this.props.user.id;
@@ -39,6 +43,8 @@ class Diary extends Component {
                 />
                 <ShowDiary
                     diaries={diaries}
+                    userId={userId}
+                    deleteDiary={this.deleteDiary.bind(this)}
                 />
             </div>
         )
@@ -51,7 +57,7 @@ const mapStateToProps = (state) => {
         isLogin: state.Login.isLogin,
         user: state.Login.user
     }
-}
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         addDiary: (diary) => {
@@ -59,8 +65,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         getAllDiaries: (userId) => {
             dispatch(diaryActions.getAllDiary(userId));
+        },
+        deleteDiary: (diaryId, userId) => {
+            dispatch(diaryActions.deleteDiary(diaryId, userId))
         }
     };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Diary);

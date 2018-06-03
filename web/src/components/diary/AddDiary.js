@@ -10,13 +10,13 @@ class AddDiary extends Component {
         this.state = {
             time: this.props.time,
             content: '',
-            userId:1
+            userId:this.props.userId
         }
     }
  
 
     render() {
-        const diary = {...this.state}
+        const diary = {...this.state};
         return (
             <div>
                 <Card title={this.props.title} style={{ margin: "10px" }}>

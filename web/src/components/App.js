@@ -26,8 +26,6 @@ class App extends Component {
   }
   
   render() {
-    console.log("this.props.user.name" )
-    console.log(this.props.user )
     if (!this.props.isLogin) {
       this.props.history.push("/");
     }

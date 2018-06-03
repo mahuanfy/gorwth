@@ -13,7 +13,6 @@ export const getAllDiary = (userId) => {
         request.get(`/web/diary/${userId}`)
             .then(result => {
                 if (result.status === StatusCode.OK) {
-                    console.log(result.data);
                     dispatch(allDiary(result.data));
                 }
             })
@@ -25,6 +24,16 @@ export const addDiary = (diary) => {
             .then(result => {
                 if (result.status === StatusCode.CREATED) {
                     dispatch(getAllDiary(diary.userId));
+                }
+            })
+    }
+};
+export const deleteDiary = (diaryId, userId) => {
+    return dispatch => {
+        request.del(`/web/diary/${diaryId}`)
+            .then(result => {
+                if (result.status === StatusCode.NO_CONTENT) {
+                    dispatch(getAllDiary(userId));
                 }
             })
     }
