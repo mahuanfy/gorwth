@@ -8,12 +8,12 @@ export const allDiary = (content) => {
     }
 };
 
-export const getAllDiary = () => {
+export const getAllDiary = (userId) => {
     return dispatch => {
-        request.get("/web/diary")
+        request.get(`/web/diary/${userId}`)
             .then(result => {
                 if (result.status === StatusCode.OK) {
-                    console.log(result.data)
+                    console.log(result.data);
                     dispatch(allDiary(result.data));
                 }
             })

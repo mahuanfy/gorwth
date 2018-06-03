@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import moment from 'moment';
 import AddDiary from './AddDiary';
 import ShowDiary from './ShowDiary';
@@ -15,23 +15,26 @@ class Diary extends Component {
             title: "新增日志",
             content: "请输入日志内容"
         }
-
     }
 
     componentDidMount() {
-        this.props.getAllDiaries()
+        this.props.getAllDiaries(this.props.user.id)
     }
-    submitDiary(newDiary) {
-        this.props.addDiary({ ...newDiary, userId: 1 });
+
+    submitDiary(newDiary, userId) {
+        this.props.addDiary({...newDiary, userId: userId});
     }
+
     render() {
         const diaries = this.props.diaries;
+        const userId = this.props.user.id;
         return (
             <div>
                 <AddDiary
                     time={this.state.time}
                     title={this.state.title}
                     content={this.state.content}
+                    userId={userId}
                     submitDiary={this.submitDiary.bind(this)}
                 />
                 <ShowDiary
@@ -41,6 +44,7 @@ class Diary extends Component {
         )
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         diaries: state.Diary.diary,
@@ -53,8 +57,8 @@ const mapDispatchToProps = (dispatch) => {
         addDiary: (diary) => {
             dispatch(diaryActions.addDiary(diary));
         },
-        getAllDiaries: () => {
-            dispatch(diaryActions.getAllDiary());
+        getAllDiaries: (userId) => {
+            dispatch(diaryActions.getAllDiary(userId));
         }
     };
 }

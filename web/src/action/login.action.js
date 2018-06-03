@@ -3,7 +3,7 @@ import * as StatusCode from '../constants/StatusCode';
 
 export const login = (content) => {
     return {
-        type: "USER_LOGIN_INFO",
+        type: "USER_INFO",
         content
     }
 };

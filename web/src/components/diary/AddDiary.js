@@ -38,7 +38,7 @@ class AddDiary extends Component {
                         </Row>
                         <Row >
                             <Col offset={18}>
-                                <Button type="primary" style={{ margin: "0 20px" }} onClick={this.props.submitDiary.bind(this, diary)}>提交</Button>
+                                <Button type="primary" style={{ margin: "0 20px" }} onClick={this.props.submitDiary.bind(this, diary,this.props.userId)}>提交</Button>
                                 <Button type="primary">重置</Button>
                             </Col>
                         </Row>
