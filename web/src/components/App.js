@@ -7,6 +7,8 @@ import {withCookies} from 'react-cookie';
 import '../css/App.css';
 import Personal from './Personal'
 import Diary from './diary/Diary'
+import * as loginActions from "../action/login.action";
+
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -56,6 +58,8 @@ class App extends Component {
                     <Personal
                         isLogin={isLogin}
                         name={user.name}
+                        history={this.props.history}
+                        logout = {this.props.logout}
                     />
                 </Header>
                 <Content style={{padding: '0 50px'}}>
@@ -109,5 +113,12 @@ const mapStateToProps = (state) => {
         user: state.Login.user
     }
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => {
+            dispatch(loginActions.logout());
+        }
+    };
+};
 
-export default connect(mapStateToProps)(withCookies(App));
+export default connect(mapStateToProps,mapDispatchToProps)(withCookies(App));

@@ -8,10 +8,10 @@ export const login = (content) => {
         content
     }
 };
-export const logout = (content) => {
+export const logout = () => {
     return {
         type: "USER_LOGIN_OUT",
-        content
+        content:[]
     }
 }
 export const userLogin = (user) => {

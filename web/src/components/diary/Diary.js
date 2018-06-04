@@ -26,7 +26,7 @@ class Diary extends Component {
     }
 
     componentDidMount() {
-        this.props.getAllDiaries(this.props.user.id)
+        this.props.getAllDiaries(this.state.user.id)
     }
 
     submitDiary(newDiary, userId) {

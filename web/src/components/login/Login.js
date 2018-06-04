@@ -19,7 +19,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log("登陆状态", this.props.isLogin);
+        console.log("登录状态", this.props.isLogin);
     }
 
     handleSubmit = (e) => {
@@ -36,7 +36,6 @@ class Login extends Component {
             const {cookies} = this.props;
             cookies.set('user', this.props.user, {path: '/', maxAge: 2 * 60 * 60});
             cookies.set('isLogin', this.props.isLogin, {path: '/', maxAge: 2 * 60 * 60});
-            console.log(cookies.get('user'));
             this.props.history.push("/app");
         }
         const {getFieldDecorator} = this.props.form;
