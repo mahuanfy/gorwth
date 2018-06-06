@@ -24,14 +24,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "查询所有用户")
-    @GetMapping(value = "/user")
-    public ResponseEntity<?> userInfoAll() {
-        List<User> users = userRepository.findAll();
+    @ApiOperation(value = "查询所有用户通过姓名")
+    @GetMapping(value = "/user/{name}")
+    public ResponseEntity<?> userInfoAllByName(@PathVariable("name") String name) {
+        List<User> users = userRepository.findByNameLike(name);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "通过id用户信息")
+    @ApiOperation(value = "通过id查询用户信息")
     @PostMapping(value = "/user/{id}")
     public ResponseEntity<?> userInfoOne(@PathVariable("id") long id) {
         Optional<User> user = userRepository.findById(id);

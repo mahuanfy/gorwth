@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie';
-import * as loginActions from '../../action/login.action';
+import * as loginActions from '../../action/user.action';
 import {Form, Icon, Input, Button, Card, Row, Col} from 'antd';
 import '../../css/App.css';
 

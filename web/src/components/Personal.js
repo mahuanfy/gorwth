@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withCookies} from 'react-cookie';
-import {Link,Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {Row, Col, Dropdown, Button, message, Icon, Menu} from 'antd';
 
 

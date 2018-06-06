@@ -11,9 +11,15 @@ export const login = (content) => {
 export const logout = () => {
     return {
         type: "USER_LOGIN_OUT",
-        content:[]
+        content: []
     }
-}
+};
+export const allUser = (content) => {
+    return {
+        type: "ALL_USER_INFO",
+        content: content
+    }
+};
 export const userLogin = (user) => {
     return dispatch => {
         request.post("/web/user", user)
@@ -25,13 +31,24 @@ export const userLogin = (user) => {
             })
     }
 };
-export const register = (user) => {
+export const register = (userName) => {
     return dispatch => {
-        request.put("/web/user", user)
+        request.put("/web/user", userName)
             .then(result => {
                 if (result.status === StatusCode.OK) {
 
                     dispatch(login(result.data));
+                }
+            })
+    }
+};
+export const allUserInfo = (name) => {
+    return dispatch => {
+        request.get(`/web/user/${name}`)
+            .then(result => {
+                if (result.status === StatusCode.OK) {
+
+                    dispatch(allUser(result.data));
                 }
             })
     }

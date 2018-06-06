@@ -7,7 +7,8 @@ import {withCookies} from 'react-cookie';
 import '../css/App.css';
 import Personal from './Personal'
 import Diary from './diary/Diary'
-import * as loginActions from "../action/login.action";
+import * as loginActions from "../action/user.action";
+import Follow from "./follow/Follow";
 
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -31,6 +32,7 @@ class App extends Component {
         const {cookies} = this.props;
         const isLogin = cookies.get('isLogin');
         const user = cookies.get('user');
+        this.props.userInfo(user);
         this.setState({isLogin});
         this.setState({user});
     }
@@ -78,11 +80,11 @@ class App extends Component {
                                 style={{height: '100%'}}
                             >
                                 <Menu.Item key="1">
-                                    <Link to={`${match.url}/`} onClick={this.path.bind(this, "我的日志")}><Icon
+                                    <Link to={`${match.url}`} onClick={this.path.bind(this, "我的日志")}><Icon
                                         type="user-add"/>我的日志</Link>
                                 </Menu.Item>
                                 <Menu.Item key="2">
-                                    <Link to={`${match.url}/app`} onClick={this.path.bind(this, "我的关注")}><Icon
+                                    <Link to={`${match.url}/follow`} onClick={this.path.bind(this, "我的关注")}><Icon
                                         type="solution"/>我的关注</Link>
                                 </Menu.Item>
                                 <Menu.Item key="3">
@@ -95,7 +97,7 @@ class App extends Component {
                         </Sider>
                         <Content style={{padding: '0 24px', minHeight: 280}}>
                             <Route exact path={`${match.url}/`} component={Diary}/>
-                            <Route exact path={`${match.url}/app`} component={Diary}/>
+                            <Route exact path={`${match.url}/follow`} component={Follow}/>
                         </Content>
                     </Layout>
                 </Content>
@@ -117,6 +119,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => {
             dispatch(loginActions.logout());
+        },
+        userInfo: (user) => {
+            dispatch(loginActions.login(user));
         }
     };
 };
