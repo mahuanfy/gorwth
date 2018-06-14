@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie';
-import {Col, Input, Row} from 'antd';
+import {Col, Input, Row, Select} from 'antd';
 import * as userActions from '../../action/user.action';
 
+const Option = Select.Option;
 const Search = Input.Search;
-
+const children = [];
+for (let i = 10; i < 36; i++) {
+    children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
+function handleChange(value) {
+    console.log(`selected ${value}`);
+}
 class Follow extends Component {
     // constructor(props) {
     //     super(props);
@@ -41,6 +48,14 @@ class Follow extends Component {
                             onSearch={this.onSearch.bind(this)}
                             onChange={this.changeSearch.bind(this)}
                         />
+                        <Select
+                            mode="tags"
+                            style={{ width: '100%' }}
+                            placeholder="Tags Mode"
+                            onChange={handleChange}
+                        >
+                            {children}
+                        </Select>
                     </Col>
                     {/*<Col span={3}/>*/}
                 </Row>
