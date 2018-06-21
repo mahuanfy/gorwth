@@ -27,7 +27,7 @@ public class UserController {
     @ApiOperation(value = "查询所有用户通过姓名")
     @GetMapping(value = "/user/{name}")
     public ResponseEntity<?> userInfoAllByName(@PathVariable("name") String name) {
-        List<User> users = userRepository.findByNameLike(name);
+        List<User> users = userRepository.findByNameContaining(name);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
@@ -58,4 +58,11 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
 
     }
+//    @ApiOperation(value = "User Follow User")
+//    @PutMapping(value = "/user")
+//    public ResponseEntity<?> addFollow(@RequestBody User user) {
+//        userRepository.save(user);
+//        return new ResponseEntity<>(null, HttpStatus.OK);
+//
+//    }
 }

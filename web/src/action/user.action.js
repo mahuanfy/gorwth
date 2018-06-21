@@ -1,7 +1,6 @@
 import * as request from '../request/request';
 import * as StatusCode from '../constants/StatusCode';
 
-
 export const login = (content) => {
     return {
         type: "USER_INFO",
@@ -53,3 +52,15 @@ export const allUserInfo = (name) => {
             })
     }
 };
+
+// export function addFollow(followUserId, userId) {
+//     return dispatch => {
+//         request.get(`/web/user/${name}`)
+//             .then(result => {
+//                 if (result.status === StatusCode.OK) {
+//
+//                     // dispatch(allUser(result.data));
+//                 }
+//             })
+//     }
+// }

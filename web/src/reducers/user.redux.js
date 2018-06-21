@@ -8,7 +8,6 @@ export default function (state = {isLogin: false, user: [], allUser: []}, action
         case USER_LOGIN_OUT:
             return {...state, isLogin: false, user: []};
         case ALL_USER_INFO:
-            console.log(action);
             return {...state, allUser: action.content};
         default:
             return state
